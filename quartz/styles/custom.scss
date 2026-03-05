@@ -1,0 +1,163 @@
+@use "./base.scss";
+
+// put your custom CSS here!
+
+/* 1. Normal Styles (Variable Weight) */
+@font-face {
+  font-family: 'Maple Mono';
+  src: url('/static/fonts/MapleMono[wght]-VF.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* 2. Italic Styles (Variable Weight) */
+@font-face {
+  font-family: 'Maple Mono';
+  src: url('/static/fonts/MapleMono-Italic[wght]-VF.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+/* 3. Apply it */
+:root {
+  --codeFont: "Maple Mono", monospace;
+  /* Uncomment below to force Maple on the whole site */
+  /* --headerFont: "Maple Mono", monospace; */
+  /* --bodyFont: "Maple Mono", monospace; */
+}
+
+/* --- 1. THE DIVIDER (Dimmer Ruby Star) --- */
+hr {
+  border: none !important;
+  margin: 4rem 0 !important;
+  position: relative !important;
+  overflow: visible !important;
+  background: transparent !important;
+  height: 1px !important;
+  opacity: 1 !important; 
+}
+
+/* The Line */
+hr::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(150, 150, 150, 0.6), transparent) !important;
+  z-index: 0;
+}
+
+/* The Icon */
+hr::after {
+  content: "✦"; 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  
+  /* Matches your dark background */
+  background-color: var(--light); 
+  padding: 0 12px;
+  
+  /* FIX: Deeper Red, Less Glow */
+  color: #c93030 !important; /* A darker, more mature red */
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(201, 48, 48, 0.3); /* Subtle glow, not a laser */
+  font-size: 1.6rem;
+  line-height: 1;
+  font-family: "Segoe UI Symbol", sans-serif;
+}
+
+/* --- 2. PRONOUNCED GLASS SIDEBAR --- */
+.left {
+  /* FIX: Lighter tint so it pops against the black background */
+  background: rgba(45, 50, 60, 0.55) !important; 
+  
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* Stronger top/left light source reflection for 3D effect */
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+  
+  /* Deep shadow to lift it off the page */
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.5); 
+  
+  border-radius: 0 20px 20px 0;
+  padding: 20px;
+  margin-right: 25px;
+  height: 100%;
+  z-index: 99;
+}
+
+.search-button {
+  /* Make search bar distinct from the sidebar */
+  background: rgba(0, 0, 0, 0.4) !important; 
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+}
+
+/* --- 1. KEEP PARAGRAPHS NORMAL --- */
+p {
+  line-height: 1.6 !important;    /* Standard comfortable reading height */
+  margin-bottom: 1.3rem !important; /* Standard "Single Space" gap between paragraphs */
+}
+
+/* --- 2. HUGE GAPS FOR HEADERS (The "New Page" Feel) --- */
+
+/* A. The Main Page Title (Docs With Friends) */
+/* Keep this tight so the Date/Time sits right underneath it */
+.article-title {
+  margin-bottom: 0.5rem !important; 
+}
+
+/* B. The Metadata (Date & Read Time) */
+/* THIS is where we put the huge gap to push the content away */
+.content-meta {
+  margin-top: 0 !important;       /* Pulls it up closer to the title */
+  margin-bottom: 3rem !important; /* The massive gap before "Welcome to the Archive" starts */
+
+  /* --- NEW: The Divider Line --- */
+  border-bottom: 1px solid var(--lightgray) !important; /* The subtle separator line */
+  padding-bottom: 1.5rem !important; /* Adds space between the date and the line */
+  display: block !important;      /* Ensures the line stretches across the page */
+}
+
+/* C. Standard H1s inside your text */
+/* If you use # Header in your writing, keep the big spacing */
+h1 {
+  margin-bottom: 2rem !important; /* Huge empty space after the Main Title */
+}
+
+h2, h3, h4 {
+  margin-top: 1rem !important;    /* Massive gap BEFORE a header (pushes old text away) */
+  margin-bottom: 2rem !important; /* Double-wide gap AFTER a header (before text starts) */
+}
+
+/* --- 3. HUGE GAPS FOR DIVIDERS --- */
+hr {
+  margin: 3rem 0 !important;      /* Massive gap around the Star/Line break */
+  /* Keep your existing border/star settings here */
+}
+
+/* --- 4. LISTS (Keep them tight) --- */
+ul, ol {
+  margin-bottom: 1rem !important; /* Match paragraph spacing */
+}
+
+/* --- 5. LIST ITEMS (The Fix) --- */
+
+/* Rule A: Main Content Lists (The "Airy" look you want) */
+article li {
+  margin-bottom: 0.4rem !important; /* Pushes the next bullet point away */
+  line-height: 1.6 !important;      /* Makes the text inside readable again */
+}
+
+/* Rule B: Sidebar/Explorer Lists (Keep them compact) */
+.sidebar li, .explorer li {
+  margin-bottom: 0rem !important; /* Tiny gap for the menu */
+  line-height: 1.4 !important;      /* Tighter text for navigation */
+}
